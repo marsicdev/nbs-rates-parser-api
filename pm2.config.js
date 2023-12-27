@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: 'nbs-rates-api',
+            name: 'nbs-rates-parser-api',
             script: 'src/app.js', // Update this path to the location of your Node.js script
             watch: true,
             ignore_watch: ['node_modules'],

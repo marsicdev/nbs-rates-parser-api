@@ -1,12 +1,13 @@
 const http = require('http');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const url = require("url");
 
 /**
  * Replace with your actual API key.
  * @type {string}
  */
-const API_KEY = 'your-api-key';
+const API_KEY = '1b89116e13a18125d4bad6326d95e2e7';
 
 /**
  * URL for fetching exchange rates from NBS.
@@ -33,6 +34,13 @@ const order = ['EUR', 'USD', 'CHF'];
 const server = http.createServer(async (req, res) => {
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
 
+    const reqUrl = url.parse(req.url).pathname
+
+    if (req.method != "GET" || reqUrl !== "/api/nbs/rates") {
+        res.statusCode = 404;
+        return res.end(JSON.stringify({ error: 'Not found' }));
+    }
+
     /**
      * The API key extracted from the request headers.
      * @type {string}
@@ -45,7 +53,7 @@ const server = http.createServer(async (req, res) => {
      */
     if (!apiKey || apiKey !== API_KEY) {
         res.statusCode = 401;
-        return res.end(JSON.stringify({ error: 'Unauthorized - Invalid API key' }));
+        return res.end(JSON.stringify({ error: 'Unauthorized - Invalid or missing API key' }));
     }
 
     try {

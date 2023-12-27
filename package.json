@@ -1,5 +1,5 @@
 {
-    "name": "nbs-rates-api",
+    "name": "nbs-rates-parser-api",
     "version": "1.0.0",
     "description": "Node.js API for fetching exchange rates from NBS",
     "main": "src/app.js",
@@ -7,20 +7,21 @@
         "start": "node src/app.js",
         "dev": "node --watch src/app.js",
         "start-pm2": "pm2 start pm2.config.js",
-        "stop-pm2": "pm2 stop nbs-rates-api",
-        "logs-pm2": "pm2 logs nbs-rates-api"
+        "stop-pm2": "pm2 stop nbs-rates-parser-api",
+        "logs-pm2": "pm2 logs nbs-rates-parser-api",
+        "reset": "rm -rf node_modules && yarn"
     },
     "dependencies": {
-        "axios": "^0.24.0",
+        "axios": "^1.6.3",
         "cheerio": "^1.0.0-rc.12",
         "winston": "^3.11.0"
     },
     "engines": {
-        "node": ">=16.0.0"
+        "node": ">=18.0.0"
     },
     "repository": {
         "type": "git",
-        "url": "your-git-repository-url"
+        "url": "git@github.com:marsicdev/nbs-rates-parser-api.git"
     },
     "keywords": [
         "nbs",
